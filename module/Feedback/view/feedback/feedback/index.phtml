@@ -1,0 +1,30 @@
+<?php
+// module/Feedback/view/feedback/feedback/index.phtml:
+
+$title = 'My feedbacks';
+$this->headTitle($title);
+?>
+<h1><?php echo $this->escapeHtml($title); ?></h1>
+<p>
+    <a href="<?php echo $this->url('feedback', array('action'=>'add'));?>">Add new feedback</a>
+</p>
+
+<table class="table">
+<tr>
+    <th>Title</th>
+    <th>Artist</th>
+    <th>&nbsp;</th>
+</tr>
+<?php foreach ($feedbacks as $feedback) : ?>
+<tr>
+    <td><?php echo $this->escapeHtml($feedback->title);?></td>
+    <td><?php echo $this->escapeHtml($feedback->artist);?></td>
+    <td>
+        <a href="<?php echo $this->url('feedback',
+            array('action'=>'edit', 'id' => $feedback->id));?>">Edit</a>
+        <a href="<?php echo $this->url('feedback',
+            array('action'=>'delete', 'id' => $feedback->id));?>">Delete</a>
+    </td>
+</tr>
+<?php endforeach; ?>
+</table>
